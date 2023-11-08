@@ -1,6 +1,5 @@
 import type { PageServerLoad } from "./$types";
 import Nostr from "$lib/Nostr";
-import { nip19 } from "nostr-tools";
 import type { Event } from "nostr-tools";
 import { getTagValues, removeDuplicates } from "$lib/util";
 import { error } from "@sveltejs/kit";
@@ -19,49 +18,21 @@ export const load = (async ({ params, setHeaders }) => {
 			message: "Couldn't connect to relays",
 		});
 	}
-	let pubkey = params.pubkey;
-	if (pubkey.startsWith("npub") || pubkey.startsWith("nprofile")) {
-		const decode = nip19.decode(pubkey);
-		if (typeof decode.data == "string") {
-			pubkey = decode.data;
-		} else {
-			// @ts-expect-error we verified it's there already
-			pubkey = decode.data.pubkey;
-		}
-	}
-
-	if (!nostrClient.pubkeys.includes(pubkey)) {
-		setHeaders({
-			"cache-control": "no-cache",
-		});
-		throw error(404, {
-			message: "Author not found",
-		});
-	}
-
 	setHeaders({
 		"cache-control": "public, max-age: 3600",
 	});
 	const sub = nostrClient.sub(relays, [
 		{
 			kinds: [30023],
-			authors: [pubkey],
-		},
-		{
-			kinds: [0],
-			authors: [pubkey],
+			"#t": ["教材"],
+			authors: nostrClient.pubkeys,
 		},
 	]);
 
 	let posts: Event[] = [];
-	let profile: Event | null = null;
 
 	sub.on("event", (event: Event) => {
-		if (event.kind == 30023) {
-			posts.push(event);
-		} else if (event.kind == 0) {
-			profile = event;
-		}
+		posts.push(event);
 	});
 
 	return {
@@ -81,10 +52,6 @@ export const load = (async ({ params, setHeaders }) => {
 				resolve(posts);
 			});
 		}),
-		profile: new Promise<Event | null>((resolve) => {
-			sub.on("eose", () => {
-				resolve(profile);
-			});
-		}),
+		tags: ["教材"],
 	};
 }) satisfies PageServerLoad;

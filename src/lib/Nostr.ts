@@ -15,13 +15,9 @@ export default class Nostr extends SimplePool {
 		if (browser) {
 			this.relays = [
 				...this.relays,
+				"wss://nostrich.friendship.tw",
 				"wss://relay.damus.io",
-				"wss://relay.snort.social",
-				"wss://eden.nostr.land",
-				"wss://puravida.nostr.land",
-				"wss://sg.qemura.xyz",
-				"wss://offchain.pub",
-				"wss://nostr.mom",
+				"wss://nos.lol"
 			];
 		}
 		this.pubkeys = PUBLIC_PUBKEYS.split(",");

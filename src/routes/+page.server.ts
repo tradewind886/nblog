@@ -43,7 +43,7 @@ export const load = (async ({ setHeaders }) => {
 				if (posts.length == 0) {
 					resolve(posts);
 				}
-				posts = removeDuplicates(posts);
+				// posts = removeDuplicates(posts);
 				posts.sort((a, b) => {
 					const aPub = getTagValues(a.tags, "published_at");
 					const bPub = getTagValues(b.tags, "published_at");

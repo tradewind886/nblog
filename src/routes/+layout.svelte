@@ -22,13 +22,12 @@
 
 <header>
 	<nav class="flex px-10 py-6 md:px-20">
-		<a class="font-extrabold" href="/" target="_self">
-			{PUBLIC_NAME}
-		</a>
+		<img src="https://tradewind886.github.io/btczhlogo.png" width="140" height="50">
 		<div class="ml-auto font-semibold uppercase">
 			<ul class="flex sm:gap-2 lg:gap-4">
 				<li><a class="px-3 py-2" href="/" target="_self">Home</a></li>
 				<li><a class="px-3 py-2" href="/posts" target="_self">Posts</a></li>
+				<li><a class="px-3 py-2" href="/education" target="_self">教材</a></li>
 				<li><a class="px-3 py-2" href="/atom" target="_self">Feed</a></li>
 			</ul>
 		</div>
