@@ -7,6 +7,7 @@
 	import { spring } from "svelte/motion";
 	import { faLink } from "@fortawesome/free-solid-svg-icons";
 	import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+	import { faBolt } from "@fortawesome/free-solid-svg-icons";
 	import { onMount } from "svelte";
 	import Reaction from "$lib/Reaction.svelte";
 	import { nostr } from "$lib/stores";
@@ -136,6 +137,12 @@
 					<div class="placeholder my-auto h-14 w-14 rounded-full" />
 				{/if}
 				<div class="my-auto flex flex-col pl-3">
+					<div style="display:flex;">{#if author && author.lud16}
+				
+			<a class="flex gap-1 text-orange-600" href="LIGHTNING:{author.lud16}">
+						<Fa icon={faBolt} />&nbsp;
+					</a>
+					{/if}
 					<a
 						class="gap-1.5 font-mono text-accent"
 						href="/profile/{nip19.npubEncode(post.pubkey)}"
@@ -150,6 +157,10 @@
 							<div class="placeholder h-5 rounded" />
 						{/if}
 					</a>
+					{#if author && author.lud16}
+				
+			{/if}
+		</div>
 					<div>
 						{new Date(
 							published_at ? Number(published_at[0]) * 1000 : 0

@@ -21,17 +21,18 @@
 </svelte:head>
 
 <header>
-	<nav class="flex px-10 py-6 md:px-20">
+	<nav class="flex px-auto py-6 md:px-10">
+		<!-- svelte-ignore a11y-missing-attribute -->
 		<img src="https://tradewind886.github.io/btczhlogo.png" width="140" height="50">
 		<div class="ml-auto font-semibold uppercase">
 			<ul class="flex sm:gap-2 lg:gap-4">
-				<li><a class="px-3 py-2" href="/" target="_self">首頁</a></li>
-				<li><a class="px-3 py-2" href="/posts" target="_self">新聞</a></li>
-				<li><a class="px-3 py-2" href="/education" target="_self">教材</a></li>
-				<li><a class="px-3 py-2" href="/atom" target="_self">RSS</a></li>
+				<li><a class="flex px-3 py-2" href="/" target="_self">首頁</a></li>
+				<li><a class="flex px-3 py-2" href="/posts" target="_self">新聞</a></li>
+				<li><a class="flex px-3 py-2" href="/education" target="_self">教材</a></li>
+				<li><a class="flex px-3 py-2" href="/atom" target="_self">RSS</a></li>
 				<li>
 
-          <a href="javascript:void(0);" class="icon" onclick="ExpandMenu()">&#9776;</a>
+          <a href="javascript:void(0);" class="flex px-3 py-2 icon" onclick="ExpandMenu()">&#9776;</a>
           <script>
 function ExpandMenu() {
   document.getElementById("mySidenav").style.width = "250px";
@@ -51,8 +52,9 @@ function closeNav() {
   <a href="/tags/技術">技術</a>
   <a href="/tags/幣圈市場">幣圈市場</a>
   <a href="/tags/區塊鏈應用">區塊鏈應用</a>
-  <a href="/tags/作家專欄">作家專欄</a>
+  <a href="/tags/比特中文觀點">比特中文觀點</a>
   <a href="/tags/中文資料庫">中文資料庫</a>
+  <a href="/about">關於我們</a>
   
 </div>
 	</nav>
